@@ -22,6 +22,16 @@
 #include <libubox/blobmsg.h>
 #include <libubox/ulog.h>
 
+struct config {
+	char *db_path;
+};
+
+extern void config_load(void);
+
+extern struct blob_buf b;
+
+extern struct config config;
+
 extern void ubus_startup(void);
 extern void ubus_stop(void);
 

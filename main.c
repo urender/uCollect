@@ -22,6 +22,8 @@ int main(int argc, char **argv)
 {
 	ulog_open(ULOG_SYSLOG | ULOG_STDIO, LOG_DAEMON, "uStore");
 
+	config_load();
+
 	uloop_init();
 
 	ubus_startup();
@@ -31,7 +33,9 @@ int main(int argc, char **argv)
 	uloop_run();
 
 	uloop_done();
+
 	db_stop();
+	ubus_stop();
 
 	return 0;
 }

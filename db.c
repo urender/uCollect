@@ -16,6 +16,10 @@
 
 #include "db.h"
 
+struct config config = {
+	.db_path = "/etc/urender/db.sqlite",
+};
+
 sqlite3 *db;
 
 #define TABLE_DEVICE							\
@@ -102,13 +106,15 @@ db_create_db(void)
 void
 db_stop(void)
 {
+/*	if(config.db_path)
+		free(config.db_path);*/
 	sqlite3_close(db);
 }
 
 int
 db_start(void)
 {
-	int rc = sqlite3_open("urender.db", &db);
+	int rc = sqlite3_open(config.db_path, &db);
 
 	if (rc != SQLITE_OK) {
 		ulog(LOG_ERR, "Cannot open database: %s\n", sqlite3_errmsg(db));

@@ -19,7 +19,7 @@
 #include "db.h"
 
 static struct ubus_auto_conn conn;
-static struct blob_buf b;
+struct blob_buf b = {};
 
 enum device_add_attr {
 	DEVICE_ADD_SERIAL,

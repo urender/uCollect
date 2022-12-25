@@ -10,12 +10,13 @@ FIND_PATH(ubus_include_dir NAMES libubus.h)
 INCLUDE_DIRECTORIES(${ubox_include_dir} ${ubus_include_dir})
 
 FIND_LIBRARY(ubox NAMES ubox)
+FIND_LIBRARY(uci NAMES uci)
 FIND_LIBRARY(ubus NAMES ubus)
 FIND_LIBRARY(sqlite3 NAMES sqlite3)
 
-SET(LIBS ${ubox} ${ubus} ${sqlite3})
+SET(LIBS ${ubox} ${ubus} ${uci} ${sqlite3})
 
-ADD_EXECUTABLE(uStore main.c ubus.c db.c device.c state.c health.c event.c)
+ADD_EXECUTABLE(uStore main.c ubus.c db.c device.c state.c health.c event.c config.c)
 TARGET_LINK_LIBRARIES(uStore ${LIBS})
 
 INSTALL(TARGETS uStore
