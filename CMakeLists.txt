@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.13)
 
-PROJECT(urender-db C)
+PROJECT(uStore C)
 #ADD_DEFINITIONS(-Os -ggdb -Wall -Werror --std=gnu99 -Wmissing-declarations)
 
 SET(CMAKE_SHARED_LIBRARY_LINK_C_FLAGS "")
@@ -15,9 +15,9 @@ FIND_LIBRARY(sqlite3 NAMES sqlite3)
 
 SET(LIBS ${ubox} ${ubus} ${sqlite3})
 
-ADD_EXECUTABLE(urender-db main.c ubus.c db.c device.c state.c health.c event.c)
-TARGET_LINK_LIBRARIES(urender-db ${LIBS})
+ADD_EXECUTABLE(uStore main.c ubus.c db.c device.c state.c health.c event.c)
+TARGET_LINK_LIBRARIES(uStore ${LIBS})
 
-INSTALL(TARGETS urender-db
+INSTALL(TARGETS uStore
 	RUNTIME DESTINATION sbin
 )
