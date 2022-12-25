@@ -22,6 +22,7 @@
 #include <libubox/blobmsg.h>
 
 extern void ubus_startup(void);
+extern void ubus_stop(void);
 
 extern sqlite3 *db;
 extern int db_start(void);

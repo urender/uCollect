@@ -341,3 +341,10 @@ ubus_startup(void)
 	conn.cb = ubus_connect_handler;
 	ubus_auto_connect(&conn);
 }
+
+void
+ubus_stop(void)
+{
+	ubus_auto_shutdown(&conn);
+	blob_buf_free(&b);
+}
