@@ -20,6 +20,7 @@
 #include <stdint.h>
 
 #include <libubox/blobmsg.h>
+#include <libubox/ulog.h>
 
 extern void ubus_startup(void);
 extern void ubus_stop(void);

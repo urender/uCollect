@@ -20,6 +20,8 @@
 
 int main(int argc, char **argv)
 {
+	ulog_open(ULOG_SYSLOG | ULOG_STDIO, LOG_DAEMON, "uStore");
+
 	uloop_init();
 
 	ubus_startup();

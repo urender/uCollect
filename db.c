@@ -111,7 +111,7 @@ db_start(void)
 	int rc = sqlite3_open("urender.db", &db);
 
 	if (rc != SQLITE_OK) {
-		fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(db));
+		ulog(LOG_ERR, "Cannot open database: %s\n", sqlite3_errmsg(db));
 		sqlite3_close(db);
 		return rc;
 	}
@@ -160,7 +160,7 @@ __db_bind_text(sqlite3_stmt *stmt, char *id, char *value, const char *func, cons
 		rc = sqlite3_bind_null(stmt, idx);
 
 	if (rc != SQLITE_OK) {
-		fprintf(stderr, "SQL error (%s:%d): (%d) - %s\n", func, line, rc, sqlite3_errmsg(db));
+		ulog(LOG_ERR, "SQL error (%s:%d): (%d) - %s\n", func, line, rc, sqlite3_errmsg(db));
 		sqlite3_finalize(stmt);
 		return -1;
 	}
@@ -175,7 +175,7 @@ __db_bind_int64(sqlite3_stmt *stmt, char *id, uint64_t value, const char *func, 
 	int rc = sqlite3_bind_int64(stmt, idx, value);
 
 	if (rc != SQLITE_OK) {
-		fprintf(stderr, "SQL error (%s:%d): (%d) - %s\n", func, line, rc, sqlite3_errmsg(db));
+		ulog(LOG_ERR, "SQL error (%s:%d): (%d) - %s\n", func, line, rc, sqlite3_errmsg(db));
 		sqlite3_finalize(stmt);
 		return -1;
 	}
@@ -190,7 +190,7 @@ __db_bind_blob(sqlite3_stmt *stmt, char *id, struct blob_attr *attr, const char 
 	int rc = sqlite3_bind_blob(stmt, idx, blobmsg_data(attr), blob_pad_len(attr), SQLITE_STATIC);
 
 	if (rc != SQLITE_OK) {
-		fprintf(stderr, "SQL error (%s:%d): (%d) - %s\n", func, line, rc, sqlite3_errmsg(db));
+		ulog(LOG_ERR, "SQL error (%s:%d): (%d) - %s\n", func, line, rc, sqlite3_errmsg(db));
 		sqlite3_finalize(stmt);
 		return -1;
 	}
@@ -204,7 +204,7 @@ __db_simple(sqlite3_stmt *stmt, const char *func, const int line)
 	int rc = sqlite3_step(stmt);
 
 	if (rc != SQLITE_DONE)
-		fprintf(stderr, "SQL error (%s:%d): (%d) - %s\n", func, line, rc, sqlite3_errmsg(db));
+		ulog(LOG_ERR, "SQL error (%s:%d): (%d) - %s\n", func, line, rc, sqlite3_errmsg(db));
 	sqlite3_finalize(stmt);
 
 	return rc != SQLITE_DONE;
@@ -219,7 +219,7 @@ __db_exec(char *sql, const char *func, const int line)
 	rc = sqlite3_exec(db, sql, 0, 0, &err_msg);
 
 	if (rc != SQLITE_OK) {
-		fprintf(stderr, "SQL error (%s:%d): %s\n", func, line, err_msg);
+		ulog(LOG_ERR, "SQL error (%s:%d): %s\n", func, line, err_msg);
 		sqlite3_free(err_msg);
 	}
 
