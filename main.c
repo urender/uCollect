@@ -28,14 +28,6 @@ int main(int argc, char **argv)
 
 	db_start();
 
-/*	device_add("1122334455", "abc");
-	device_add("1122334456", "abc");
-	device_add("1122334457", "abc");
-
-	event_add("admin", NULL, "192.168.178.1", "New login on admin panel");
-	event_add("device", "1122334455", NULL, "Connected");
-	event_add("system", NULL, NULL, "Startup");
-*/
 	uloop_run();
 
 	uloop_done();
