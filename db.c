@@ -64,6 +64,7 @@ sqlite3 *db;
 #define FOREIGN_KEYS	"PRAGMA foreign_keys = ON"
 
 static char *db_commands[] = {
+	"BEGIN TRANSACTION;",
 	TABLE_DEVICE,
 	INDEX_DEVICE,
 
@@ -78,6 +79,8 @@ static char *db_commands[] = {
 	INDEX_EVENT_SERIAL,
 
 	FOREIGN_KEYS,
+
+	"COMMIT;",
 	NULL
 };
 
