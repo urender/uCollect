@@ -316,10 +316,10 @@ static const struct ubus_method urender_methods[] = {
 };
 
 static struct ubus_object_type urender_object_type =
-	UBUS_OBJECT_TYPE("urender", urender_methods);
+	UBUS_OBJECT_TYPE("collect", urender_methods);
 
 static struct ubus_object urender_object = {
-	.name = "urender-db",
+	.name = "collect",
 	.type = &urender_object_type,
 	.methods = urender_methods,
 	.n_methods = ARRAY_SIZE(urender_methods),

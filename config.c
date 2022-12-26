@@ -53,7 +53,7 @@ config_load(void)
 	struct uci_context *uci = uci_alloc_context();
         struct uci_package *package = NULL;
 
-	if (!uci_load(uci, "uStore", &package)) {
+	if (!uci_load(uci, "uCollect", &package)) {
 		struct uci_element *e;
 
 		uci_foreach_element(&package->sections, e) {
